@@ -1,0 +1,16 @@
+[project]
+name = "weekend-plan-builder"
+version = "0.1.0"
+description = "Weekend Plan Builder - Agno agent with AG-UI interface"
+requires-python = ">=3.11"
+dependencies = [
+    "agno[google]",
+    "ag-ui-protocol",
+    "duckduckgo-search",
+    "uvicorn",
+    "fastapi",
+]
+
+[build-system]
+requires = ["setuptools>=75.0"]
+build-backend = "setuptools.build_meta"
