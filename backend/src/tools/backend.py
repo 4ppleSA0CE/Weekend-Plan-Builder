@@ -1,5 +1,5 @@
 from agno.tools import tool
-from duckduckgo_search import DDGS
+from ddgs import DDGS
 
 
 @tool

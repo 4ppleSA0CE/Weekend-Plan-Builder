@@ -1,3 +1,6 @@
+from dotenv import load_dotenv
+load_dotenv()
+
 from agno.os import AgentOS
 from agno.os.interfaces.agui import AGUI
 

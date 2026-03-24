@@ -58,8 +58,9 @@ Follow these steps in order:
 """
 
 weekend_agent = Agent(
-    model=Gemini(id="gemini-2.5-flash-preview-05-20"),
-    system_prompt=SYSTEM_PROMPT,
+    name="weekend_agent",
+    model=Gemini(id="gemini-2.5-flash"),
+    instructions=SYSTEM_PROMPT,
     tools=[collect_preferences, web_search, set_weekend_plan],
     markdown=True,
 )
