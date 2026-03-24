@@ -4,50 +4,96 @@ import type { WeekendPlan, ActivityItem, ActivityCategory } from "@/types";
 
 const CATEGORY_CONFIG: Record<
   ActivityCategory,
-  { icon: string; color: string; bg: string }
+  { icon: string; accent: string; label: string }
 > = {
-  food: { icon: "🍽️", color: "text-orange-700", bg: "bg-orange-50 border-orange-200" },
-  activity: { icon: "🎯", color: "text-blue-700", bg: "bg-blue-50 border-blue-200" },
-  rest: { icon: "☕", color: "text-emerald-700", bg: "bg-emerald-50 border-emerald-200" },
-  travel: { icon: "🚗", color: "text-purple-700", bg: "bg-purple-50 border-purple-200" },
+  food: {
+    icon: "🍽",
+    accent: "border-l-dusk-copper",
+    label: "text-dusk-copper",
+  },
+  activity: {
+    icon: "◇",
+    accent: "border-l-dusk-sage",
+    label: "text-dusk-sage",
+  },
+  rest: {
+    icon: "☕",
+    accent: "border-l-dusk-rose",
+    label: "text-dusk-rose",
+  },
+  travel: {
+    icon: "→",
+    accent: "border-l-dusk-amber",
+    label: "text-dusk-amber",
+  },
 };
 
-function ActivityCard({ item }: { item: ActivityItem }) {
+function ActivityCard({
+  item,
+  index,
+}: {
+  item: ActivityItem;
+  index: number;
+}) {
   const config = CATEGORY_CONFIG[item.category] ?? CATEGORY_CONFIG.activity;
 
   return (
-    <div className={`rounded-lg border p-4 ${config.bg} transition-shadow hover:shadow-sm`}>
+    <div
+      className={`relative rounded-xl border border-dusk-border bg-dusk-card/80 pl-4 pr-4 py-4 border-l-4 ${config.accent} backdrop-blur-sm shadow-[0_8px_32px_-16px_rgba(0,0,0,0.5)] transition-shadow hover:shadow-[0_12px_40px_-12px_rgba(200,121,65,0.12)] animate-fade-in-up`}
+      style={{ animationDelay: `${0.06 * index}s` }}
+    >
       <div className="flex items-start gap-3">
-        <div className="flex-shrink-0">
-          <span className="text-lg">{config.icon}</span>
+        <div className="flex-shrink-0 w-8 text-center pt-0.5">
+          <span className={`text-lg ${config.label}`} aria-hidden>
+            {config.icon}
+          </span>
         </div>
         <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-xs font-mono text-slate-500 bg-white/70 px-2 py-0.5 rounded">
+          <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+            <span className="font-mono text-[0.7rem] tracking-wide text-dusk-dim bg-dusk-surface/80 px-2 py-0.5 rounded-md border border-dusk-border/80">
               {item.time}
             </span>
-            <h4 className={`text-sm font-semibold ${config.color}`}>
+            <h4
+              className={`text-[0.95rem] font-semibold tracking-tight ${config.label}`}
+            >
               {item.title}
             </h4>
           </div>
 
           {item.location && (
-            <p className="text-xs text-slate-600 mt-1 flex items-center gap-1">
-              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            <p className="text-xs text-dusk-muted mt-2 flex items-start gap-1.5">
+              <svg
+                className="w-3.5 h-3.5 shrink-0 mt-0.5 text-dusk-dim"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                />
               </svg>
               {item.location}
             </p>
           )}
 
           {item.note && (
-            <p className="text-xs text-slate-500 mt-1.5 italic">{item.note}</p>
+            <p className="text-xs text-dusk-dim mt-2 italic leading-relaxed border-l border-dusk-border-accent/50 pl-3">
+              {item.note}
+            </p>
           )}
 
-          <div className="flex items-center gap-3 mt-2 flex-wrap">
+          <div className="flex items-center gap-4 mt-3 flex-wrap">
             {item.estimated_cost !== undefined && item.estimated_cost !== null && (
-              <span className="text-xs font-medium text-slate-600 bg-white/70 px-2 py-0.5 rounded">
+              <span className="text-xs font-mono font-medium text-dusk-cream bg-dusk-copper/15 border border-dusk-copper/30 px-2.5 py-1 rounded-full">
                 ${item.estimated_cost.toFixed(0)}
               </span>
             )}
@@ -56,11 +102,21 @@ function ActivityCard({ item }: { item: ActivityItem }) {
                 href={item.source_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs text-indigo-600 hover:text-indigo-800 hover:underline flex items-center gap-0.5"
+                className="text-xs text-dusk-copper underline underline-offset-4 decoration-dusk-copper/50 hover:text-dusk-amber hover:decoration-dusk-amber flex items-center gap-1 transition-colors"
               >
                 Source
-                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                <svg
+                  className="w-3 h-3"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
                 </svg>
               </a>
             )}
@@ -71,30 +127,50 @@ function ActivityCard({ item }: { item: ActivityItem }) {
   );
 }
 
-function DayCard({ day }: { day: { day: string; theme: string; items: ActivityItem[] } }) {
+function DayCard({
+  day,
+  dayIndex,
+}: {
+  day: { day: string; theme: string; items: ActivityItem[] };
+  dayIndex: number;
+}) {
   const totalCost = day.items.reduce(
     (sum, item) => sum + (item.estimated_cost ?? 0),
     0
   );
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-white overflow-hidden shadow-sm">
-      <div className="px-5 py-4 bg-gradient-to-r from-indigo-600 to-indigo-500">
-        <div className="flex items-center justify-between">
+    <div
+      className="rounded-2xl border border-dusk-border-accent/40 bg-dusk-surface/50 overflow-hidden shadow-[0_24px_48px_-24px_rgba(0,0,0,0.55)] animate-fade-in-up"
+      style={{ animationDelay: `${0.12 * dayIndex}s` }}
+    >
+      <div className="relative px-6 py-5 bg-gradient-to-br from-dusk-copper/90 via-dusk-copper/75 to-dusk-amber/50">
+        <div
+          className="absolute inset-0 opacity-[0.15] bg-[radial-gradient(circle_at_30%_20%,white,transparent_55%)]"
+          aria-hidden
+        />
+        <div className="relative flex flex-wrap items-start justify-between gap-4">
           <div>
-            <h3 className="text-lg font-bold text-white">{day.day}</h3>
-            <p className="text-indigo-100 text-sm">{day.theme}</p>
+            <p className="text-[0.65rem] uppercase tracking-[0.3em] text-dusk-cream/70 mb-1">
+              Day
+            </p>
+            <h3 className="font-display text-2xl md:text-[1.65rem] text-dusk-cream tracking-tight">
+              {day.day}
+            </h3>
+            <p className="text-dusk-cream/85 text-sm mt-1.5 max-w-md leading-relaxed">
+              {day.theme}
+            </p>
           </div>
           {totalCost > 0 && (
-            <span className="text-sm font-medium text-indigo-100 bg-white/20 px-3 py-1 rounded-full">
+            <span className="font-mono text-sm text-dusk-cream bg-black/20 px-4 py-2 rounded-full border border-dusk-cream/20">
               ~${totalCost.toFixed(0)}
             </span>
           )}
         </div>
       </div>
-      <div className="p-4 space-y-3">
+      <div className="p-5 space-y-4 bg-gradient-to-b from-dusk-deep/40 to-transparent">
         {day.items.map((item, idx) => (
-          <ActivityCard key={idx} item={item} />
+          <ActivityCard key={idx} item={item} index={idx} />
         ))}
       </div>
     </div>
@@ -103,28 +179,49 @@ function DayCard({ day }: { day: { day: string; theme: string; items: ActivityIt
 
 export function WeekendPlanView({ plan }: { plan: WeekendPlan }) {
   return (
-    <div className="max-w-2xl mx-auto space-y-6">
-      <div className="text-center space-y-3 py-2">
-        <div className="inline-flex items-center gap-2 text-xs font-medium text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-full">
-          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+    <div className="max-w-2xl mx-auto space-y-10">
+      <header className="text-left md:text-center space-y-5 py-2 animate-fade-in-up">
+        <div className="inline-flex items-center gap-2 text-xs font-medium tracking-wide text-dusk-amber border border-dusk-amber/35 bg-dusk-amber/5 px-4 py-2 rounded-full">
+          <svg
+            className="w-3.5 h-3.5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+            />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+            />
           </svg>
           {plan.city}
         </div>
-        <h1 className="text-2xl font-bold text-slate-800">{plan.title}</h1>
-        <p className="text-slate-500 text-sm max-w-md mx-auto">{plan.summary}</p>
-        <div className="inline-flex items-center gap-1.5 text-sm font-medium text-emerald-700 bg-emerald-50 px-4 py-2 rounded-lg border border-emerald-200">
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          {plan.budget_note}
+        <h1 className="font-display text-3xl sm:text-4xl text-dusk-cream leading-tight tracking-tight">
+          {plan.title}
+        </h1>
+        <p className="text-dusk-muted text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
+          {plan.summary}
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
+          <span className="text-dusk-dim text-[0.65rem] uppercase tracking-[0.2em]">
+            Budget
+          </span>
+          <span className="text-sm text-dusk-cream font-medium border-b border-dusk-copper/40 pb-0.5">
+            {plan.budget_note}
+          </span>
         </div>
-      </div>
+      </header>
 
-      <div className="space-y-5">
+      <div className="space-y-8">
         {plan.days.map((day, idx) => (
-          <DayCard key={idx} day={day} />
+          <DayCard key={idx} day={day} dayIndex={idx} />
         ))}
       </div>
     </div>

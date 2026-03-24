@@ -1,3 +1,170 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* --- Design tokens: Warm Dusk Editorial --- */
+:root {
+  --bg-deep: #1a1714;
+  --bg-surface: #242019;
+  --bg-card: #2e2a23;
+  --bg-hover: #3a342b;
+  --text-primary: #f0e6d6;
+  --text-secondary: #a89a86;
+  --text-dim: #6b6054;
+  --accent-copper: #c87941;
+  --accent-amber: #d4a04a;
+  --accent-sage: #7a9a6d;
+  --accent-rose: #b5676a;
+  --border: #3a342b;
+  --border-accent: #5a4a38;
+  --glow-warm: rgba(200, 121, 65, 0.12);
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-dusk-deep text-dusk-cream antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  /* Film grain / print texture */
+  body::before {
+    content: "";
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+  }
+}
+
+/* --- Animations --- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes floatSoft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@layer utilities {
+  .animate-fade-in-up {
+    animation: fadeInUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out both;
+  }
+
+  .animate-float-soft {
+    animation: floatSoft 6s ease-in-out infinite;
+  }
+
+  .stagger-1 {
+    animation-delay: 0.08s;
+  }
+  .stagger-2 {
+    animation-delay: 0.16s;
+  }
+  .stagger-3 {
+    animation-delay: 0.24s;
+  }
+  .stagger-4 {
+    animation-delay: 0.32s;
+  }
+  .stagger-5 {
+    animation-delay: 0.4s;
+  }
+  .stagger-6 {
+    animation-delay: 0.48s;
+  }
+
+  .bg-dusk-gradient {
+    background-color: var(--bg-deep);
+    background-image:
+      radial-gradient(
+        ellipse 120% 80% at 50% -20%,
+        rgba(200, 121, 65, 0.18) 0%,
+        transparent 55%
+      ),
+      radial-gradient(
+        ellipse 90% 60% at 100% 0%,
+        rgba(212, 160, 74, 0.08) 0%,
+        transparent 55%
+      ),
+      radial-gradient(
+        ellipse 70% 50% at 0% 100%,
+        rgba(122, 154, 109, 0.06) 0%,
+        transparent 50%
+      );
+  }
+
+  .bg-dot-grid {
+    background-image: radial-gradient(
+      circle,
+      rgba(168, 154, 134, 0.12) 1px,
+      transparent 1px
+    );
+    background-size: 24px 24px;
+  }
+
+  .font-display {
+    font-family: var(--font-dm-serif), ui-serif, Georgia, serif;
+  }
+
+  .font-body {
+    font-family: var(--font-outfit), system-ui, sans-serif;
+  }
+
+  .font-mono-data {
+    font-family: var(--font-jetbrains), ui-monospace, monospace;
+  }
+}
+
+/* CopilotKit: warm dark theme (html.dark activates base dark tokens in library) */
+html.dark,
+body.dark {
+  --copilot-kit-primary-color: rgb(200, 121, 65);
+  --copilot-kit-contrast-color: rgb(240, 230, 214);
+  --copilot-kit-background-color: rgb(26, 23, 20);
+  --copilot-kit-input-background-color: rgb(36, 32, 25);
+  --copilot-kit-secondary-color: rgb(36, 32, 25);
+  --copilot-kit-secondary-contrast-color: rgb(240, 230, 214);
+  --copilot-kit-separator-color: rgb(58, 52, 43);
+  --copilot-kit-muted-color: rgb(107, 96, 84);
+  --copilot-kit-error-background: rgba(181, 103, 106, 0.15);
+  --copilot-kit-error-border: rgb(181, 103, 106);
+  --copilot-kit-error-text: rgb(232, 180, 182);
+  --copilot-kit-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.35);
+  --copilot-kit-shadow-md: 0 4px 14px -2px rgba(0, 0, 0, 0.45);
+  --copilot-kit-shadow-lg: 0 12px 28px -4px rgba(0, 0, 0, 0.5);
+  --copilot-kit-dev-console-bg: rgb(36, 32, 25);
+  --copilot-kit-dev-console-text: rgb(240, 230, 214);
+}
