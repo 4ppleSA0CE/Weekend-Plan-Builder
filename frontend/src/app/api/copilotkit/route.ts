@@ -6,13 +6,16 @@ import {
 import { HttpAgent } from "@ag-ui/client";
 import { NextRequest } from "next/server";
 
-const BACKEND_URL = process.env.BACKEND_URL ?? "http://localhost:8000";
+const backendBase = (process.env.BACKEND_URL ?? "http://localhost:8000").replace(
+  /\/$/,
+  "",
+);
 
 export const POST = async (req: NextRequest) => {
   const runtime = new CopilotRuntime({
     agents: {
       weekend_agent: new HttpAgent({
-        url: `${BACKEND_URL}/agui`,
+        url: `${backendBase}/agui`,
       }),
     },
   });

@@ -1,7 +1,7 @@
 [project]
 name = "weekend-plan-builder"
 version = "0.1.0"
-description = "Weekend Plan Builder - Agno agent with AG-UI interface"
+description = "Weekend Plan Builder"
 requires-python = ">=3.11"
 dependencies = [
     "agno[google]",

@@ -28,3 +28,6 @@ out/
 # Build artifacts
 *.tsbuildinfo
 next-env.d.ts
+
+# Local Vercel CLI metadata (if you use the CLI again)
+.vercel
