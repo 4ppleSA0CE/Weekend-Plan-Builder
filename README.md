@@ -4,6 +4,8 @@ A full-stack agentic web application that helps users plan personalized weekends
 
 ![Architecture](https://img.shields.io/badge/Backend-Python%20%2B%20Agno-blue) ![Frontend](https://img.shields.io/badge/Frontend-Next.js%20%2B%20CopilotKit-black) ![Protocol](https://img.shields.io/badge/Protocol-AG--UI-green)
 
+**Live demo:** [planyourweekend.vercel.app](https://planyourweekend.vercel.app/)
+
 ## What this is
 
 Instead of typing long answers or juggling browser tabs, you describe the weekend you want in chat. The assistant figures out what it still needs and surfaces **interactive forms** inside the chat (budget, interests, dietary notes, how you are getting there, and so on)—only for details you have not already given. Once preferences are clear, it **searches the live web** for real places and events, then builds a **day-by-day itinerary** shown in a dedicated panel: timed activities, categories, **estimated activity costs plus travel costs** (local transit and main-trip transport when relevant), and source links—not a wall of unstructured text.
@@ -170,7 +172,7 @@ Each day has a theme and timed activities with category (`food` | `activity` | `
 
 ## Demo
 
-Static assets live in [docs/demo](docs/demo/). The walkthrough is an H.264 MP4 (scaled to 1280px wide) so it stays small enough for GitHub; the source recording was higher resolution.
+Try the deployed app at [planyourweekend.vercel.app](https://planyourweekend.vercel.app/). Static assets also live in [docs/demo](docs/demo/). The walkthrough below is H.264 MP4 (scaled to 1280px wide) so it stays small enough for GitHub; the source screen recording was higher resolution.
 
 **Screenshots**
 
@@ -186,9 +188,11 @@ Generated **weekend plan** in the main panel (day-by-day itinerary, costs, sourc
 
 ![Weekend plan itinerary and chat](docs/demo/screenshot-weekend-plan-itinerary.png)
 
-**Video**
+**Video** (~2.5 minutes: chat → preferences → plan)
 
-[docs/demo/demo-walkthrough.mp4](docs/demo/demo-walkthrough.mp4) — full ~2.5 minute screen recording of the flow (chat → preferences → plan).
+<video src="https://raw.githubusercontent.com/4ppleSA0CE/Weekend-Plan-Builder/main/docs/demo/demo-walkthrough.mp4" controls playsinline width="100%"></video>
+
+[Download `demo-walkthrough.mp4`](docs/demo/demo-walkthrough.mp4) (same file as in the repo)
 
 ## Trade-offs, risks, and future work
 
