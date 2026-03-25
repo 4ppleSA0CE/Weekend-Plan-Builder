@@ -24,6 +24,8 @@ CopilotKit provides the chat UI, streaming, and tool-call lifecycle hooks. The *
 ```text
 Weekend-Plan-Builder/
 ├── README.md
+├── docs/
+│   └── demo/                    # README screenshots + walkthrough video
 ├── backend/
 │   ├── main.py                   # local dev server (uvicorn entry)
 │   ├── index.py                  # ASGI re-export of `app` (e.g. serverless)
@@ -168,7 +170,21 @@ Each day has a theme and timed activities with category (`food` | `activity` | `
 
 ## Demo
 
-Optional: add **screenshots or a short GIF/video** under something like `docs/demo/` and link them here.
+Static assets live in [docs/demo](docs/demo/). The walkthrough is an H.264 MP4 (scaled to 1280px wide) so it stays small enough for GitHub; the source recording was higher resolution.
+
+**Screenshots**
+
+Landing hero with the CopilotKit sidebar and opening prompt:
+
+![Landing and welcome chat](docs/demo/screenshot-landing-welcome.png)
+
+Interactive **preferences** form rendered inside the chat (multi-select chips and free-text timing):
+
+![Preferences form in chat](docs/demo/screenshot-preferences-form.png)
+
+**Video**
+
+[docs/demo/demo-walkthrough.mp4](docs/demo/demo-walkthrough.mp4) — full ~2.5 minute screen recording of the flow (chat → preferences → plan).
 
 ## Trade-offs, risks, and future work
 
