@@ -43,7 +43,10 @@ def set_weekend_plan(
         title: Plan title (e.g. "NYC Weekend for Two")
         city: City name
         summary: 1-2 sentence summary of the weekend plan
-        budget_note: Budget estimate or note (e.g. "Estimated total: $250-300")
+        budget_note: Budget estimate including travel (local transit, parking,
+            and if applicable outbound/return transport) plus activities and meals.
+            Example: "Activities & meals ~$220-280; local rides ~$40-60; round-trip
+            train ~$80 (est.) — total ~$340-420"
         days: List of day plans. Each day is a dict with:
             - day (str): "Saturday" or "Sunday"
             - theme (str): theme for the day (e.g. "Culture & Cuisine")
@@ -51,8 +54,10 @@ def set_weekend_plan(
                 - time (str): e.g. "10:00 AM"
                 - title (str): activity name
                 - category (str): one of "food", "activity", "rest", "travel"
+                  (use "travel" for between-venue legs and main-trip transport)
                 - location (str, optional): venue name or address
                 - note (str, optional): brief note or tip
-                - estimated_cost (float, optional): cost in dollars
+                - estimated_cost (float, optional): cost in dollars (include on travel
+                  rows when estimating a leg)
                 - source_url (str, optional): link from web search results
     """

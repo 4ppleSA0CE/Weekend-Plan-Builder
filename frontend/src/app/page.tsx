@@ -119,7 +119,8 @@ export default function Home() {
         {
           name: "budget_note",
           type: "string",
-          description: "Budget estimate or note",
+          description:
+            "Estimated total budget with travel: activities/meals plus local transit and (if relevant) getting there/back. Ranges ok; label estimates.",
           required: true,
         },
         {
@@ -161,7 +162,8 @@ export default function Home() {
                 {
                   name: "category",
                   type: "string",
-                  description: "Category",
+                  description:
+                    "food | activity | rest | travel (use travel for between-venue legs and main-trip transport)",
                   enum: ["food", "activity", "rest", "travel"],
                   required: true,
                 },
