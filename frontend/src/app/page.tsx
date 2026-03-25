@@ -203,11 +203,19 @@ export default function Home() {
       render: ({ status }) => {
         if (status === "inProgress") {
           return (
-            <div className="rounded-xl border border-dusk-border-accent bg-dusk-surface/90 px-4 py-3 flex items-center gap-3 text-dusk-muted shadow-[0_0_24px_-8px_rgba(200,121,65,0.35)]">
-              <div className="h-4 w-4 shrink-0 rounded-full border-2 border-dusk-copper border-t-transparent animate-spin" />
-              <span className="text-sm font-medium tracking-wide text-dusk-cream">
-                Building your plan…
-              </span>
+            <div className="rounded-full border border-dusk-border-accent/80 bg-dusk-surface/95 px-4 py-3 shadow-[0_0_24px_-8px_rgba(200,121,65,0.35)]">
+              <div className="flex items-start gap-3">
+                <div className="h-4 w-4 shrink-0 mt-0.5 rounded-full border-2 border-dusk-copper border-t-transparent animate-spin" />
+                <div className="min-w-0 space-y-1">
+                  <p className="text-sm font-medium tracking-wide text-dusk-cream">
+                    Building your plan…
+                  </p>
+                  <p className="text-[0.7rem] leading-relaxed text-dusk-muted">
+                    Weaving search results into your itinerary — usually under a
+                    minute, but it can take a bit longer.
+                  </p>
+                </div>
+              </div>
             </div>
           );
         }
@@ -264,22 +272,31 @@ export default function Home() {
           | undefined;
         if (status === "inProgress") {
           return (
-            <div className="rounded-xl border border-dusk-border bg-dusk-surface/80 px-4 py-3 flex items-center gap-3 text-dusk-muted">
-              <div className="h-3.5 w-3.5 shrink-0 rounded-full border-2 border-dusk-amber border-t-transparent animate-spin" />
-              <span className="text-xs font-mono tracking-tight">
-                Searching: {query ?? "…"}
-              </span>
+            <div className="rounded-full border border-dusk-border-accent/70 bg-dusk-card/90 px-4 py-3">
+              <div className="flex items-start gap-3">
+                <div className="h-3.5 w-3.5 shrink-0 mt-0.5 rounded-full border-2 border-dusk-amber border-t-transparent animate-spin" />
+                <div className="min-w-0 space-y-1.5">
+                  <p className="text-xs font-mono tracking-tight text-dusk-amber">
+                    Browsing: {query ?? "…"}
+                  </p>
+                  <p className="text-[0.65rem] leading-relaxed text-dusk-muted">
+                    The assistant is searching the live web for venues and
+                    details. This may take a minute or two — hang tight.
+                  </p>
+                </div>
+              </div>
             </div>
           );
         }
         if (status === "complete") {
           return (
-            <div className="rounded-xl border border-dusk-border-accent/60 bg-dusk-card/60 px-4 py-3 flex items-center gap-3 text-dusk-muted">
+            <div className="rounded-full border border-dusk-border-accent/60 bg-dusk-card/60 px-4 py-3 flex items-center gap-3">
               <svg
                 className="w-3.5 h-3.5 shrink-0 text-dusk-amber"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
+                aria-hidden
               >
                 <path
                   strokeLinecap="round"
@@ -288,7 +305,7 @@ export default function Home() {
                   d="M5 13l4 4L19 7"
                 />
               </svg>
-              <span className="text-xs font-mono tracking-tight">
+              <span className="text-xs font-mono tracking-tight text-dusk-muted">
                 Searched: {query ?? "done"}
               </span>
             </div>
@@ -308,7 +325,7 @@ export default function Home() {
       labels={{
         title: "Weekend Planner",
         initial:
-          'Hi! Tell me what kind of weekend you\'d like to plan. For example: "Plan a fun weekend in New York for two under $300"',
+          'Hi! Tell me what kind of weekend you\'d like to plan. For example: "Plan a fun weekend in New York for two under $300." After you share preferences, the assistant browses the web for real venues — that research can take a minute or two, so don\'t worry if the chat pauses briefly.',
       }}
     >
       <main className="relative min-h-screen bg-dusk-gradient bg-dot-grid overflow-hidden">
@@ -329,6 +346,9 @@ export default function Home() {
                 <p className="text-dusk-muted text-base sm:text-lg max-w-md leading-relaxed animate-fade-in-up stagger-3">
                   Describe the weekend you want — we&apos;ll weave real venues,
                   food, and moments into a plan you can actually use.
+                </p>
+                <p className="mt-3 text-dusk-dim text-sm max-w-md leading-relaxed animate-fade-in-up stagger-3">
+                  It may take a few minutes for all searches to finish.
                 </p>
                 <div className="mt-10 space-y-3 max-w-lg animate-fade-in-up stagger-4">
                   {[
