@@ -182,6 +182,10 @@ Interactive **preferences** form rendered inside the chat (multi-select chips an
 
 ![Preferences form in chat](docs/demo/screenshot-preferences-form.png)
 
+Generated **weekend plan** in the main panel (day-by-day itinerary, costs, source links) with chat confirming the plan is ready:
+
+![Weekend plan itinerary and chat](docs/demo/screenshot-weekend-plan-itinerary.png)
+
 **Video**
 
 [docs/demo/demo-walkthrough.mp4](docs/demo/demo-walkthrough.mp4) — full ~2.5 minute screen recording of the flow (chat → preferences → plan).
