@@ -1,4 +1,4 @@
-# Weekend Plan Builder
+# Weekend Plan Builder (Take Home)
 
 A full-stack agentic web application that helps users plan personalized weekends. The app uses a conversational AI agent to gather preferences, search for real venues and activities, and produce a structured weekend plan rendered as polished UI.
 
